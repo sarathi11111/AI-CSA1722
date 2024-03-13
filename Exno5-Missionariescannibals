@@ -1,0 +1,50 @@
+class Node:
+    def __init__(self, state, parent=None):
+        self.state = state
+        self.parent = parent
+
+def successors(node):
+    successors = []
+    m, c, b = node.state
+
+    for new_m in range(3):
+        for new_c in range(3):
+            if 1 <= new_m + new_c <= 2 and (new_m == 0 or new_m >= new_c) and (3 - new_m == 0 or 3 - new_m >= 3 - new_c):
+                if b == 1:
+                    next_state = (m - new_m, c - new_c, 0)
+                else:
+                    next_state = (m + new_m, c + new_c, 1)
+                successors.append(Node(next_state, node))
+
+    return successors
+
+def bfs(initial_state):
+    frontier = [Node(initial_state)]
+    explored = set()
+
+    while frontier:
+        node = frontier.pop(0)
+        if node.state == goal_state:
+            return node  
+        explored.add(node.state)
+
+        for child in successors(node):
+            if child.state not in explored:
+                frontier.append(child)
+
+    return None  
+
+initial_state = (3, 3, 1)  
+goal_state = (0, 0, 0)     
+
+result = bfs(initial_state)
+
+if result:
+    path = []
+    while result:
+        path.insert(0, result.state)
+        result = result.parent
+    for p in path:
+        print(p) 
+else:
+    print("No solution found.")
