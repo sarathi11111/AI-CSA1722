@@ -1,0 +1,6 @@
+name(sarathi,date(2003,11,03)).
+name(michael,date(2002,4,26)).
+name(nick,date(2004,1,12)).
+name(riya,date(2003,12,14)).
+dob(Name, DateOfBirth) :-
+    name(Name, DateOfBirth).
