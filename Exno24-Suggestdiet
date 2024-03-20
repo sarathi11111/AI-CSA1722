@@ -1,0 +1,6 @@
+disease_diet(cancer, [avoid_red_meat, increase_vegetables, exercise_regularly]).
+disease_diet(diabetes, [avoid_sugar, eat_whole_grains, regular_exercise]).
+disease_diet(heart_disease, [low_fat_diet, limit_sodium, regular_exercise]).
+
+suggest_diet(Disease, Diet) :-
+    disease_diet(Disease, Diet).
